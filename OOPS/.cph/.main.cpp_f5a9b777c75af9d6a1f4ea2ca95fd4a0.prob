@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"c:\\Users\\bunty\\Documents\\C++\\OOPS\\main.cpp","tests":[{"id":1643932459491,"input":"Arya\n19\n0\nAshu\n21\n0\nLakshmi\n20\n1","output":""},{"id":1643938384786,"input":"","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\OOPS\\main.cpp","group":"local","local":true}

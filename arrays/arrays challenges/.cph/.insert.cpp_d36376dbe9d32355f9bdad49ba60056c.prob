@@ -1,0 +1,1 @@
+{"name":"Local: insert","url":"c:\\Users\\bunty\\Documents\\C++\\arrays\\arrays challenges\\insert.cpp","tests":[{"id":1644261290110,"input":"5\n1 2 3 4 5\n6 2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\arrays\\arrays challenges\\insert.cpp","group":"local","local":true}

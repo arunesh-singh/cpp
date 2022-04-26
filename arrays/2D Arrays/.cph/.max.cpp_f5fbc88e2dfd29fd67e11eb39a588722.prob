@@ -1,0 +1,1 @@
+{"name":"Local: max","url":"c:\\Users\\bunty\\Documents\\C++\\arrays\\2D Arrays\\max.cpp","tests":[{"id":1643018461228,"input":"3 3\n23 65 12\n-3 90 4\n14 -7 43","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\arrays\\2D Arrays\\max.cpp","group":"local","local":true}
