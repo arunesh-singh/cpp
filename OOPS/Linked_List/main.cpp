@@ -99,6 +99,59 @@ Node* reverse(Node* &head){
     return prev;
 }
 
+Node* reverseRecur(Node* &head){
+
+    if(head== NULL || head->next == NULL){
+        return head;
+    }
+    Node * newhead = reverseRecur(head->next);
+    head->next->next=head;
+    head->next=NULL;
+
+    return newhead;
+}
+
+Node* reverseKNode(Node* &head,int k ){
+    Node* cur=head;
+    Node* prev=NULL;
+    Node* nextp;
+
+    int count = 0;
+
+    while(cur!=NULL && count<k){
+        nextp=cur->next;
+        cur->next=prev;
+        prev=cur;
+        cur=nextp;
+        count++;
+    }
+
+    if(nextp!=NULL){
+        head->next = reverseKNode(nextp,k);
+    }
+    
+    return prev;
+}
+
+void makeCycle(Node* & head){
+    Node * startN = head;
+    Node * 
+}
+
+bool detectCycle(Node* &head){
+    Node * slow = head;
+    Node * fast = head;
+
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+
+        if(fast==slow)
+            return true;
+    }
+    return false;
+}
+
 int main(){
     Node * head=NULL;
 
@@ -112,7 +165,7 @@ int main(){
 
     print(head);
     
-    Node* newHead=reverse(head);
+    Node* newHead=reverseKNode(head,2);
     print(newHead);
     //deleteHead(head);
     //deletion(head,0);
