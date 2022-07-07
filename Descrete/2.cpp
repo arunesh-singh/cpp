@@ -22,9 +22,8 @@ class SET{
     vector<int> set;
 
     public:
-    SET() {
-        int n;
-        cout<<"Enter no of elements : ";
+    SET(int n) {
+
         size = n;
 
         cout<<"\nEnter the elements : ";
@@ -35,30 +34,77 @@ class SET{
         }
     }
 
-    bool isSubset(SET A){
+    void isSubset(SET A){
         
         sort(A.set.begin() , A.set.end());
 
-        bool flag = false;
+        bool flag;
         int arr[size];
 
         for( int i=0 ; i<size ; i++){
             arr[i] = set[i];
         }
         for( auto element : set ){
-            if(binarySearch(arr,0,size,element)){
-                flag = true;
-            }
+            flag = binarySearch(arr,0,size,element);
         }
 
-        return flag;
-    };
+        if(flag){
+            cout<<"B is subset of A"<<endl;
+        }
+        else{
+            cout<<"B is not subset of A"<<endl;
+        }
+    }
 };
+
+void menu(SET A, SET B){
+
+    cout<<"\n1. isSubset";
+    cout<<"\n2. Union";
+    cout<<"\n3. Intersection";
+    cout<<"\n4. Complement";
+    cout<<"\n5. Set Difference";
+    cout<<"\n6. Symmetric Difference";
+    cout<<"\n7. Cartesian Product";
+    cout<<"\n0. Exit\n";
+
+    int t;
+    cout<<"\nEnter a number to perform operation : \n";
+    cin>>t;
+
+    switch (t)
+    {
+    case 0:
+        return;
+        break;
+
+    case 1:
+        B.isSubset(A);
+        break;
+
+    
+    default:
+        cout<<"Invalid Input"<<endl;
+        break;
+    }
+
+    return menu(A,B);
+}
+
 
 int main(){
 
-    SET A = new SET();
-    SET B = new SET();
+    int n,m;
+    cout<<"\nEnter no of elements of set A : ";
+    cin>>n;
+    SET A(n);
+    
+    cout<<"\nEnter no of elements of set B : ";
+    cin>>m;
+    SET B(m);
 
-    cout<<B.isSubset(A)<<endl;
+    menu(A,B);
+
+    return 0;
+
 }
