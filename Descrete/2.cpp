@@ -1,19 +1,20 @@
 #include "bits/stdc++.h"
 using namespace std;
 
-bool binarySearch(int arr[], int start, int end, int data){
-    int mid = start + ( end - start )/2;
-    if(data==mid){
-        return true;
+bool binarySearch(int arr[], int low, int high, int x){
+    
+    if (high >= low)
+    {
+        int mid = (low + high) / 2;
+ 
+        if ((mid == 0 || x > arr[mid - 1]) && (arr[mid] == x))
+            return mid;
+        else if (x > arr[mid])
+            return binarySearch(arr, (mid + 1), high, x);
+        else
+            return binarySearch(arr, low, (mid - 1), x);
     }
-    else if(data>mid){
-        binarySearch(arr,mid+1,end,data);
-    }
-    else{
-        binarySearch(arr,start,mid-1,data);
-    }
-
-    return false;
+    return -1;
 }
 
 class SET{
@@ -34,26 +35,23 @@ class SET{
         }
     }
 
-    void isSubset(SET A){
+    bool isSubset(SET A){
         
         sort(A.set.begin() , A.set.end());
-
-        bool flag;
         int arr[size];
 
         for( int i=0 ; i<size ; i++){
             arr[i] = set[i];
         }
         for( auto element : set ){
-            flag = binarySearch(arr,0,size,element);
+            if(binarySearch(arr,0,size,element) == -1){
+                return 0;
+            }
+            
         }
 
-        if(flag){
-            cout<<"B is subset of A"<<endl;
-        }
-        else{
-            cout<<"B is not subset of A"<<endl;
-        }
+        return 1;
+
     }
 };
 
@@ -76,10 +74,15 @@ void menu(SET A, SET B){
     {
     case 0:
         return;
-        break;
 
     case 1:
-        B.isSubset(A);
+        if(B.isSubset(A) == 1){
+            cout<<"B is subset of A"<<endl;
+        }
+        else{
+            cout<<"B is not subset of A"<<endl;
+        }
+
         break;
 
     
