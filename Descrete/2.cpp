@@ -71,11 +71,11 @@ vector<int> complement(vector<int> A, vector<int> B)
 {
     vector <int> cset;
 
-    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
 
-    for (auto element : B)
+    for (auto element : A)
     {
-        if (binary_search(A.begin(), A.end(), element) == false)
+        if (binary_search(B.begin(), B.end(), element) == false)
             cset.push_back(element);
     }
 
@@ -84,20 +84,10 @@ vector<int> complement(vector<int> A, vector<int> B)
 
 vector<int> SetDiff(vector<int> A, vector<int> B)
 {
-    vector<int> set_diff;
+    
     vector<int> iset(intersectionSet(A,B));
-
-    sort(A.begin(), A.end());
-
-    for (auto element : A)
-    {
-        for(auto ele : iset){
-            if(ele == element){
-                continue;
-            }
-            set_diff.push_back(element);
-        }
-    }
+    
+    vector<int> set_diff(complement(A,iset));
 
     return set_diff;
 }
@@ -110,23 +100,41 @@ vector<int> SymmDiff(vector<int> A, vector<int> B)
     return SetDiff(uset,iset);
 }
 
+void cartesianP(vector<int> A , vector<int> B){
+    
+    vector<pair<int,int>> cp;
+
+    for(auto one : A){
+        for(auto two : B){
+            cp.push_back(make_pair(one,two));
+        }
+    }
+
+    for(auto ele : cp){
+        cout<<ele.first<<",";
+        cout<<ele.second<<" ; ";
+    }cout<<endl;
+}
+
 void menu(SET A, SET B){
 
-    cout<<"\n1. isSubset";
-    cout<<"\n2. Union";
-    cout<<"\n3. Intersection";
-    cout<<"\n4. Complement";
-    cout<<"\n5. Set Difference";
-    cout<<"\n6. Symmetric Difference";
-    cout<<"\n7. Cartesian Product";
-    cout<<"\n0. Exit\n";
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "0.Exit" << endl;
+    cout << "1.Subset - Check whether one set is a subset of other or not" << endl;
+    cout << "2.Union  of the two sets" << endl;
+    cout << "3.Intersection of the two sets" << endl;
+    cout << "4.Complement" << endl;
+    cout << "5.Set difference" << endl;
+    cout << "6.Symmetric Difference" << endl;
+    cout << "7.Cartesian product" << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "Please enter your choice:";
 
     int t;
-    cout<<"\nEnter a number to perform operation : \n";
     cin>>t;
 
     vector <int> arr;
-    
+
     switch (t)
     {
     case 0:
@@ -200,6 +208,11 @@ void menu(SET A, SET B){
         }
         cout << endl;
         
+        break;
+
+    case 7:
+        cartesianP(A.set , B.set);
+
         break;
 
     default:
