@@ -22,6 +22,8 @@ class Relation {
             rel.push_back(temp);
             
         }
+        
+    
     }
 
     void display(){
