@@ -8,9 +8,29 @@ class Node{
 
     Node(int val){
         data=val;
-        next=NULL;
+        next=next;
     }
 };
+
+int lenght(Node *head){
+    Node*temp = head;
+    int count = 0 ; 
+    do{
+        count++;
+        temp = temp->next;
+    }while( temp != head )
+
+    return count;
+}
+
+void print(Node * head){
+    Node *cur=head;
+    while(cur!=head){
+        cout<<cur->data<<"-->";
+        cur=cur->next;
+    }
+    cout<<"NULL"<<endl;
+}
 
 void inserAtTail(Node* &head,int val){
     Node* n= new Node(val);
@@ -20,26 +40,28 @@ void inserAtTail(Node* &head,int val){
         return;
     }
     Node* temp=head;
-    while(temp->next!=NULL){
+    while(temp->next!=head){
         temp=temp->next;
     }
-    temp->next=n;
+    n->next = head;
+    temp->next = n;
     
 }
 
-void print(Node * head){
-    Node *cur=head;
-    while(cur!=NULL){
-        cout<<cur->data<<" ";
-        cur=cur->next;
-    }
-    cout<<"NULL"<<endl;
-}
-
 void insertAtHead(Node* &head,int val){
-    Node* n=new Node(val);
-    n->next=head;
-    head=n;
+    Node* n= new Node(val);
+    
+    if(head==NULL){
+        head=n;
+        return;
+    }
+    Node* temp=head;
+    while(temp->next!=head){
+        temp=temp->next;
+    }
+    n->next = head;
+    temp->next = n;
+    head = n;
 }
 
 insertAfter(Node* &prev,int val){
@@ -63,9 +85,27 @@ bool search(Node* head,int key){
 
 void deleteHead(Node* &head){
     Node* temp=head;
+    Node* cur = head;
+    while(temp->next!= head){
+        temp = temp->next;
+    }
+    temp->next = head->next;
     head=head->next;
 
+    delete cur;
+}
+
+void deleteLast(Node* &head){
+    Node *temp = head;
+    Node *cur;
+    while(temp->next!=head){
+        cur = temp;
+        temp = temp->next;
+    }
+    cur->next = head;
+    
     delete temp;
+
 }
 
 void deletion(Node* &head,int val){
