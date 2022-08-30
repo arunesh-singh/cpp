@@ -1,28 +1,13 @@
 #include "bits/stdc++.h"
 using namespace std;
 
-bool binarySearch(int arr[], int low, int high, int x){
-    
-    if (high >= low)
-    {
-        int mid = (low + high) / 2;
- 
-        if ((mid == 0 || x > arr[mid - 1]) && (arr[mid] == x))
-            return mid;
-        else if (x > arr[mid])
-            return binarySearch(arr, (mid + 1), high, x);
-        else
-            return binarySearch(arr, low, (mid - 1), x);
-    }
-    return -1;
-}
 
 class SET{
     
+    public:
     int size;
     vector<int> set;
 
-    public:
     SET(int n) {
 
         size = n;
@@ -34,41 +19,121 @@ class SET{
             set.push_back(t);
         }
     }
-
-    bool isSubset(SET A){
-        
-        sort(A.set.begin() , A.set.end());
-        int arr[size];
-
-        for( int i=0 ; i<size ; i++){
-            arr[i] = set[i];
-        }
-        for( auto element : set ){
-            if(binarySearch(arr,0,size,element) == -1){
-                return 0;
-            }
-            
-        }
-
-        return 1;
-
-    }
+    
 };
+
+int isSubset(vector<int> A, vector<int> B)
+{
+
+    sort(A.begin(), A.end());
+    
+    for (auto element : B)
+    {
+        if (binary_search(A.begin(), A.end(), element) == false)   
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+vector<int> unionSet(vector<int> A, vector<int> B)
+{
+
+    sort(A.begin(), A.end()) ;
+
+    for (auto element : B )
+    {
+        if(binary_search(A.begin(),A.end(),element) == false)
+            A.push_back(element);
+    }
+
+    return A;
+}
+
+vector<int> intersectionSet(vector<int> A, vector<int> B)
+{
+    vector<int> iSet;
+
+    sort(A.begin(), A.end());
+
+    for(auto element : B)
+    {
+        if(binary_search(A.begin(),A.end(),element) == true)
+            iSet.push_back(element);
+    }
+
+    return iSet;
+}
+
+vector<int> complement(vector<int> A, vector<int> B)
+{
+    vector <int> cset;
+
+    sort(B.begin(), B.end());
+
+    for (auto element : A)
+    {
+        if (binary_search(B.begin(), B.end(), element) == false)
+            cset.push_back(element);
+    }
+
+    return cset;
+}
+
+vector<int> SetDiff(vector<int> A, vector<int> B)
+{
+    
+    vector<int> iset(intersectionSet(A,B));
+    
+    vector<int> set_diff(complement(A,iset));
+
+    return set_diff;
+}
+
+vector<int> SymmDiff(vector<int> A, vector<int> B)
+{
+    vector <int> uset(unionSet(A,B));
+    vector <int> iset(intersectionSet(A,B));
+
+    return SetDiff(uset,iset);
+}
+
+void cartesianP(vector<int> A , vector<int> B){
+    
+    vector<pair<int,int>> cp;
+
+    for(auto one : A){
+        for(auto two : B){
+            cp.push_back(make_pair(one,two));
+        }
+    }
+
+    for(auto ele : cp){
+        cout<<ele.first<<",";
+        cout<<ele.second<<" ; ";
+    }cout<<endl;
+}
 
 void menu(SET A, SET B){
 
-    cout<<"\n1. isSubset";
-    cout<<"\n2. Union";
-    cout<<"\n3. Intersection";
-    cout<<"\n4. Complement";
-    cout<<"\n5. Set Difference";
-    cout<<"\n6. Symmetric Difference";
-    cout<<"\n7. Cartesian Product";
-    cout<<"\n0. Exit\n";
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "0.Exit" << endl;
+    cout << "1.Subset - Check whether one set is a subset of other or not" << endl;
+    cout << "2.Union  of the two sets" << endl;
+    cout << "3.Intersection of the two sets" << endl;
+    cout << "4.Complement" << endl;
+    cout << "5.Set difference" << endl;
+    cout << "6.Symmetric Difference" << endl;
+    cout << "7.Cartesian product" << endl;
+    cout << "--------------------------------------------------------------------" << endl;
+    cout << "Please enter your choice:";
 
     int t;
-    cout<<"\nEnter a number to perform operation : \n";
     cin>>t;
+
+    vector <int> arr;
 
     switch (t)
     {
@@ -76,18 +141,82 @@ void menu(SET A, SET B){
         return;
 
     case 1:
-        if(B.isSubset(A) == 1){
-            cout<<"B is subset of A"<<endl;
+        if(isSubset(A.set,B.set) == 1){
+            
+            cout<<"\nB is subset of A"<<endl;
         }
         else{
-            cout<<"B is not subset of A"<<endl;
+            cout<<"\nB is not subset of A"<<endl;
         }
 
         break;
 
+    case 2:
+        arr = (unionSet(A.set,B.set));
+        cout << "\nUnion Set of Set A and Set B : ";
+        for (auto element : arr)
+        {
+            cout << element << " ";
+        }
+        cout << endl;
+        break;
+
+    case 3:
+        arr = (intersectionSet(A.set, B.set));
+        cout << "\nInersection Set of Set A and Set B : ";
+        for (auto element : arr)
+        {
+            cout << element << " ";
+        }
+        cout << endl;
+        break;
     
+    case 4:
+        if (isSubset(A.set, B.set) == 1)
+        {
+            arr = (complement(A.set, B.set));
+            cout << "\nComplement Set of Set B : ";
+            for (auto element : arr)
+            {
+                cout << element << " ";
+            }
+            cout << endl;
+        }
+        else
+        {
+            cout << "\nB is not subset of A , therefore its complement cannot be determined." << endl;
+        }
+        break;
+    
+    case 5:
+        arr = (SetDiff(A.set, B.set));
+        cout << "\nSet Difference of Set B from Set A : ";
+        for (auto element : arr)
+        {
+            cout << element << " ";
+        }
+        cout << endl;
+        
+        break;
+    
+    case 6:
+        arr = (SymmDiff(A.set, B.set));
+        cout << "\nSymmetric Diff of Set A and Set B : ";
+        for (auto element : arr)
+        {
+            cout << element << " ";
+        }
+        cout << endl;
+        
+        break;
+
+    case 7:
+        cartesianP(A.set , B.set);
+
+        break;
+
     default:
-        cout<<"Invalid Input"<<endl;
+        cout<<"\nInvalid Input"<<endl;
         break;
     }
 

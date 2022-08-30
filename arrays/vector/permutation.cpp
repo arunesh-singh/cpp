@@ -18,13 +18,19 @@ void permute(vector<int> &a,int idx){
 
 int main(){
     int n;
+    cout<<"Enter lenght of set : ";
     cin>>n;
 
     vector<int> a(n);
+
+    cout<<"Enter the elements : ";
     for(auto &i:a){
         cin>>i;
     }
+
     permute(a,0);
+
+    cout<<"Permutations : \n";
     for(auto v: ans){
         for(auto i:v){
             cout<<i<<" ";
