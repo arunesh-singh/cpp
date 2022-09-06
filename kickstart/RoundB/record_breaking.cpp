@@ -3,27 +3,20 @@ using namespace std;
 
 int NumberOfRecordBreakingDays(int numberOfDays, vector<int> visitors) {
   
-  int count = 0 ; 
+  int recordBreaks = 0;
+  int previousRecord = 0;
 
-  if( visitors[0] > visitors[1] )
-    count++;
-  
-  if( visitors[numberOfDays-1] > visitors[numberOfDays-2])
-    count++;
-  
-  for(int i=1 ; i<numberOfDays ; i++){
-    bool flag = false;
-    for(int j=0 ; j<i ; j++){
+  for(int i=0 ; i<visitors.size() ; i++ ){
+    bool greaterThanPrevDays = i == 0 || visitors[i] > previousRecord;
+    bool greaterThanFollowDays = i == numberOfDays-1 || visitors[i]> visitors[i+1];
 
-      flag = ( visitors[i] > visitors[j])? true : false ;
-      
-    }
-    if( flag == true && visitors[i]> visitors[i+1])
-      count++;
+    if( greaterThanFollowDays && greaterThanPrevDays)
+      recordBreaks++;
     
+    previousRecord = max(previousRecord , visitors[i]);
   }
 
-  return count;
+  return recordBreaks;
 }
 
 int main() {

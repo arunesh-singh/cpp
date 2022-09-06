@@ -179,10 +179,49 @@ Node* kFromEnd(Node* head , int k){
     return kthNode;
 }
 
-int main(){
-    Node * head=NULL;
+/* bool isPalindrome(ListNode* head) {
+    
+    ListNode* slow, *fast , *prev;
+    slow = fast = head;
+    while(fast!=nullptr || fast->next != nullptr ){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    
+    while( slow != nullptr ){
+        
+        fast = slow->next;
+        slow->next = prev;
+        prev = slow;
+        slow = fast;
+        
+    }
+    
+    slow = fast = head;
+    while(fast!=nullptr || fast->next != nullptr ){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    prev = head;
+    while( slow != NULL ){
+        if( prev->val != slow ->val)
+            return false;
+        prev = prev->next;
+        slow = slow->next;
+    }
+    return false;
+} */
 
-    inserAtTail(head,1);
+int main(){
+    Node * head= NULL;
+
+    Node * head2 = nullptr;
+
+    if( head == head2 ){
+        cout<<"Yes";
+    }
+
+/*     inserAtTail(head,1);
     inserAtTail(head,2);
     inserAtTail(head,3);
     //print(head);
@@ -194,6 +233,8 @@ int main(){
     
     Node* newHead=reverseRecur(head);
     print(newHead);
+ */
+
     //deleteHead(head);
     //deletion(head,0);
     

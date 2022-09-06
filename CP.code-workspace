@@ -12,7 +12,8 @@
             "initializer_list": "cpp",
             "regex": "cpp",
             "utility": "cpp",
-            "iostream": "cpp"
+            "iostream": "cpp",
+            "valarray": "cpp"
         }
     }
 }
