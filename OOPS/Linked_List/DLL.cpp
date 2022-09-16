@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-template<typename T> class Node{
+template<class T> 
+class Node{
     public:
     T data;
     Node * next;
@@ -14,17 +15,19 @@ template<typename T> class Node{
     }
 };
 
-void print( Node * head ){
-    Node* cur = head;
+template<class T>
+void print( Node<T> * head ){
+    Node<T>* cur = head;
     while(cur != NULL){
         cout<<cur->data<<"->";
         cur = cur->next;
     }cout<<endl;
 }
 
-void insertAtHead(Node* &head , T val){
+template<class T>
+void insertAtHead(Node<T>* &head , T val){
 
-    Node* newNode = new Node(val);
+    Node<T>* newNode(val);
 
     newNode->next = head;
     head->prev = newNode;
@@ -32,10 +35,11 @@ void insertAtHead(Node* &head , T val){
 
 }
 
-void insertAtEnd(Node* &head , T val){
+template<class T>
+void insertAtEnd(Node<T>* &head , T val){
 
-    Node* newNode = new Node(val);
-    Node* last = head;
+    Node<T>* newNode(val);
+    Node<T>* last = head;
     
     if( head == NULL ){
         head = newNode;
@@ -51,9 +55,10 @@ void insertAtEnd(Node* &head , T val){
     
 }
 
-void insertAtMid(Node* prev , T val ){
+template<class T>
+void insertAtMid(Node<T>* prev , T val ){
 
-    Node* newNode = new Node(val);
+    Node<T>* newNode(val);
 
     if( prev == NULL ){
         prev = newNode;
@@ -66,8 +71,9 @@ void insertAtMid(Node* prev , T val ){
 
 }
 
-bool search(Node* head , T val){
-    Node* temp = head;
+template<class T>
+bool search(Node<T>* head , T val){
+    Node<T>* temp = head;
     while(temp != NULL ){
         if( temp->data == val)
             return true;
@@ -76,18 +82,20 @@ bool search(Node* head , T val){
     return false;
 }
 
-void deleteFirst(Node* &head ){
+template<class T>
+void deleteFirst(Node<T>* &head ){
 
     if(head == NULL)
         return;
-    Node *temp = head;
+    Node<T> *temp = head;
     
     head = head->next;
     head->prev = NULL;
     delete temp;
 }
 
-void deleteLast(Node* &head ){
+template<class T>
+void deleteLast(Node<T>* &head ){
 
     if(head == NULL)
         return;
@@ -97,23 +105,24 @@ void deleteLast(Node* &head ){
         return;
     }
 
-    Node* prev = head;
+    Node<T>* prev = head;
     while(prev->next->next!=NULL)
         prev= prev->next;
     
-    Node* temp = prev->next;
+    Node<T>* temp = prev->next;
     prev->next = NULL;
     delete temp;
 
 }
 
-void deleteMid(Node* &head , int pos){
+template<class T>
+void deleteMid(Node<T>* &head , int pos){
 
     if(head == NULL){
         cout<<"List is Empty"<<endl;
         return;
     }
-    Node *temp = head;
+    Node<T> *temp = head;
     if( pos == 1){
         head = head->next;
     }
@@ -124,7 +133,7 @@ void deleteMid(Node* &head , int pos){
     }
     
     int k = 1;
-    Node *temp2;
+    Node<T> *temp2;
     while(temp != NULL && k < pos ){
         k++;
         temp = temp->next;
@@ -143,6 +152,7 @@ void deleteMid(Node* &head , int pos){
 
 }
 
+/* template<class T>
 Node* reverse(Node* &head){
     Node* prev = NULL;
     Node* cur = head;
@@ -157,6 +167,7 @@ Node* reverse(Node* &head){
     return prev;
 }
 
+template<class T>
 Node* reverseRecur(Node* &head){
 
     if(head == NULL || head->next == NULL )
@@ -167,9 +178,10 @@ Node* reverseRecur(Node* &head){
     head->next = NULL;
 
     return newHead;
-}
+} */
 
-void menu(Node* head){
+template<class T>
+void menu(Node<T>* head){
 
     cout<<"\n\tMenu Driven Program for LinkedList"<<endl;
     cout<<"\nSelect the operation to perforn\n the respective operation : "<<endl;
@@ -189,36 +201,10 @@ void menu(Node* head){
 
     cout<<"\nEnter the datatype of the node(\n1. int\n2. char\n3. float\n4. bool) :";
     int ch;
-    switch (ch)
-    {
-    case 1:
-        int val;
-        cout<<"Enter value of node :";
-        cin>>val;
-        break;
     
-    case 2:
-        char val;
-        cout<<"Enter value of node :";
-        cin>>val;
-        break;
-    
-    case 3:
-        float val;
-        cout<<"Enter value of node :";
-        cin>>val;
-        break;
-    
-    case 4:
-        bool val;
-        cout<<"Enter value of node :";
-        cin>>val;
-        break;
-    
-    default:
-        cout<<"Enter valid option.\n";
-        break;
-    }
+    T val;
+    cout<<"Enter value of node :";
+    cin>>val;
 
     switch (n)
     {
@@ -272,7 +258,7 @@ void menu(Node* head){
 
 int main(){
 
-    Node* head = NULL;
+    Node <int>* head = NULL;
 
     menu(head);
 

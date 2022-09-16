@@ -27,7 +27,7 @@ void inserAtTail(Node* &head,int val){
     
 }
 
-void print(Node * head){
+void print(Node * &head){
     Node *cur=head;
     while(cur!=NULL){
         cout<<cur->data<<" ";
@@ -192,8 +192,9 @@ int main(){
 
     print(head);
     
-    Node* newHead=reverseRecur(head);
-    print(newHead);
+    // Node* newHead=reverseRecur(head);
+    deletion(head , 1);
+    print(head);
     //deleteHead(head);
     //deletion(head,0);
     
