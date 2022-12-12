@@ -1,6 +1,3 @@
-/*
-  Selective repeat sliding window protocol
-*/
 
 #include "bits/stdc++.h"
 using namespace std;

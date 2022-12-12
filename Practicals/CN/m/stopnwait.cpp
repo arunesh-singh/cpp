@@ -1,5 +1,3 @@
-/* Simulate and implement stop and wait protocol for noisy channel */
-
 #include "bits/stdc++.h"
 using namespace std;
 
