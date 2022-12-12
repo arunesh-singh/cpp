@@ -1,0 +1,77 @@
+Q.1) Find the Integral Surface of the eqn u*u_x+u_y=1, so that the surface passes through an initial curve
+	represented parametrically by x(s,0)=2*s^2, y(s,0)=2*s & u(s,0)=0 where is s>0 is a parameter.
+Soln: The Char eqns are: dx/u = dy/1 = du/1 =dt ; where t is another parameter.
+	So they reduce parametrically to: 
+	dx/dt=u ; x(0)= 2*s^2
+	dy/dt=1 ; y(0)=2*s
+	du/dt=1 ; u(0)=0.
+ -->	kill(all);
+ -->	a:'diff(u,t)=1;
+ -->	ode2(a,u,t);
+ -->	a1:solve(u=t+c1,u);
+ -->	b:'diff(y,t)=1;
+ -->	ode2(b,y,t);
+ -->	b1:solve(y=t+c2,y);
+ -->	d:'diff(x,t)=t+c1;
+ -->	ode2(d,x,t);
+ -->	d1:solve(x=t^2/2+c1*t+c3,x);
+ -->	subst([t=0,x=2*s^2],d1);
+ -->	subst([t=0,y=2*s],b1);
+ -->	subst([t=0,u=0],a1);
+ -->	'x=t^2/2+2*s^2;
+ -->	'y=t+2*s;
+ -->	'u=t;
+ -->	/*load(draw)$*/
+ -->	wxdraw3d(color=red,parametric(2*s^2,2^s,0,s,2,10),title="Initial curve");
+ -->	wxdraw3d(color=cyan,parametric_surface(t^2/2+2*s^2,t+2*s,t,s,-100,100,t,-300,300),title="Integral Surface");
+ -->	wxdraw3d([color=cyan,parametric_surface(t^2+2*s,t+2*s,t,s,-100,100,t,-300,300),
+	color=red,parametric(2*s^2,2*s,0,s,-100,100)],title="Integral surface with Initial curve");
+
+Q.3) Solve the Cauchy problem u_x-u_y=2 with cauchy data: x(0)=s, y(0)=s,u(0)=2s. Also plot the integral surface
+	passing through initial curve.
+ -->	kill(all);
+The char eqns are: dx/1 = dy/(-1) = du/2 =dt which transform in parametric form as:
+	dx/dt=1; x(0)=s
+	dy/dt=(-1); y(0)=s
+	du/dt=2; u(0)=2s
+ -->	a:'diff(x,t)=1;
+ -->	ode2(a,x,t);
+ -->	a1:x=t+c1;
+ -->	subst([x=s,t=0],a1);
+ -->	b:'diff(y,t)=-1;
+ -->	ode2(b,y,t);
+ -->	b1:y=c2-t;
+ -->	subst([y=s,t=0],b1);
+ -->	d:'diff(u,t)=2;
+ -->	ode2(d,u,t);
+ -->	d2:u=2*t+c3;
+ -->	subst([u=2*s,t=0],d2);
+ -->	'x=t+s;
+ -->	'y=s-t;
+ -->	'u=2*t+2*s;
+ -->	wxdraw3d(color=magenta,parametric(s,s,2*s,s,-10,10));
+ -->	wxdraw3d(color=green,parametric_surface(t+s,s-t,2*t+2*s,s,-10,10,t,-20,20));
+ -->	wxdraw3d([color=green,parametric_surface(t+s,s-t,2*t+2*s,s,-10,10,t,-20,20),color=magenta,parametric(s,s,2*s,s,-10,10)]);
+
+Q.4) Solve x*ux+y*uy=x*exp(-u) ; u(x,x^2)=0.
+SOLN: The Characteristic eqns are: dx/x = dy/y = du/(x*exp(-u)). Solving the following:
+	dy/dx=y/x and du/dx=exp(-u), we get: 
+ -->	kill(all);
+ -->	a:'diff(y,x)=y/x;
+ -->	ode2(a,y,x);
+ -->	solve(y=c1*x,c1);
+ -->	b:'diff(u,x)=exp(-u);
+ -->	ode2(b,u,x);
+ -->	solve(exp(u)=x+c2,c2);
+The general soln is given by c2=g(c1) where g is an arbitrary function. 
+ -->	exp(u)-x=g(y/x);
+ -->	u(x,y):=log(x+g(y/x));
+ -->	d:u(x,x^2)=0;
+ -->	solve(d,g(x));
+ -->	g(x):=1-x;
+ -->	'u(x,y)=u(x,y);
+ -->	wxplot3d(u(x,y),[x,-2,3],[y,-6,4]);
+ -->	wxdraw3d(color=red,parametric(s,s^2,0,s,-10,10),title="Initial Curve");
+ -->	wxdraw3d(color=cyan,explicit(log(-y/x+x+1),x,-10,10,y,-20,20),title="Integral surface");
+ -->	wxdraw3d([color=cyan,explicit(log(-y/x+x+1),x,-10,10,y,-20,20),
+	color=red,parametric(s,s^2,0,s,-5,5)],title="Integral surface with initial curve");

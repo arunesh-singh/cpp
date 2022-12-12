@@ -1,0 +1,34 @@
+Practical 5 :
+Solution of System of ordinary differential equations.
+Q1 - Solve the system of ODE:
+	 dx/dt = 5x + 3y
+	 dy/dt = 4x + y, x(0)=0, y(0)=8
+ -->	eq1 : diff(x(t),t) = 5*x(t) + 3*y(t);
+	eq2 : diff(y(t),t) = 4*x(t) + y(t) ;
+(%o1)	'diff(x(t),t,1)=3·y(t)+5·x(t)
+(%o2)	'diff(y(t),t,1)=y(t)+4·x(t)
+Method 1: Using Eigen values and Eigen vectors
+ -->	A: matrix([5,3] , [4,1]);
+(%o3)	matrix(
+		[5,	3],
+		[4,	1]
+	)
+ -->	eigenvalues(A);
+	eigenvectors(A);
+(%o4)	[[7,-1],[1,1]]
+(%o5)	[[[7,-1],[1,1]],[[[1,2/3]],[[1,-2]]]]
+ -->	soln : [x,y] = c1*[1,2/3]*%e^(7*t)+ c2*[1,-2]*%e^(-t);
+(%o6)	[x,y]=
+[c1·%e^(7·t)+c2·%e^(-t),(2·c1·%e^(7·t))/3-2·c2·%e^(-t)]
+ -->	part(soln , 1, 1) = part(soln,2,1);
+(%o7)	x=c1·%e^(7·t)+c2·%e^(-t)
+ -->	part(soln, 1, 2) = part(soln , 2, 2);
+(%o8)	y=(2·c1·%e^(7·t))/3-2·c2·%e^(-t)
+Method 2: directly using desolve
+ -->	atvalue(x(t), t=0 , 0);
+	atvalue(y(t) , t=0 , 8);
+(%o9)	0
+
+(%o10)	8
+ -->	desolve([eq1,eq2], [x(t), y(t)]);
+(%o11)	[x(t)=3·%e^(7·t)-3·%e^(-t),y(t)=2·%e^(7·t)+6·%e^(-t)]
