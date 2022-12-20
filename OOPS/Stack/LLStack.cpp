@@ -54,9 +54,10 @@ void LL::Pop(){
     Node *temp = cur->next;
     while(temp->next!=NULL){
         temp = temp->next;
+        cur = cur->next;
     }
     cur->next = NULL;
-    free(temp);
+    delete temp;
 
 }
 

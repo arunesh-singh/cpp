@@ -1,58 +1,60 @@
 #include <iostream>
 using namespace std;
 
+template <class T>
 class Node{
     public:
-    int data;
-    Node* next;
+    T data;
+    Node<T>* next;
 
-    Node(int val){
+    Node(T val){
         data=val;
         next=NULL;
     }
 };
 
-void inserAtTail(Node* &head,int val){
-    Node* n= new Node(val);
+template<class T>
+void inserAtTail(Node<T>* &head,T val){
+    Node<T>* n= new Node<T>(val);
     
     if(head==NULL){
         head=n;
         return;
     }
-    Node* temp=head;
+    Node<T>* temp=head;
     while(temp->next!=NULL){
         temp=temp->next;
     }
     temp->next=n;
     
 }
-
-void print(Node * &head){
-    Node *cur=head;
+template<class T>
+void print(Node<T> * &head){
+    Node<T> *cur=head;
     while(cur!=NULL){
         cout<<cur->data<<" ";
         cur=cur->next;
     }
     cout<<"NULL"<<endl;
 }
-
-void insertAtHead(Node* &head,int val){
-    Node* n=new Node(val);
+template<class T>
+void insertAtHead(Node<T>* &head,int val){
+    Node<T>* n=new Node<T>(val);
     n->next=head;
     head=n;
 }
-
-insertAfter(Node* &prev,int val){
+template<class T>
+insertAfter(Node<T>* &prev,int val){
     if(prev==NULL){
         cout<<"Previous cannot be NULL \n";
     }
-    Node* n=new Node(val);
+    Node<T>* n=new Node<T>(val);
     n->next=prev;
     prev=n;
 }
-
-bool search(Node* head,int key){
-    Node* temp=head;
+/* 
+bool search(Node<T>* head,int key){
+    Node<T>* temp=head;
     while(temp!=NULL){
         if(temp->data==key)
             return true;
@@ -60,15 +62,16 @@ bool search(Node* head,int key){
     }
     return false;
 }
-
-void deleteHead(Node* &head){
-    Node* temp=head;
+ */
+template<class T>
+void deleteHead(Node<T>* &head){
+    Node<T>* temp=head;
     head=head->next;
 
     delete temp;
 }
-
-void deletion(Node* &head,int val){
+template<class T>
+void deletion(Node<T>* &head,T val){
     
     if(head==NULL){
         return;
@@ -77,19 +80,19 @@ void deletion(Node* &head,int val){
         deleteHead(head);
         return;
     }
-    Node* temp=head;
+    Node<T>* temp=head;
     while(temp->next->data!=val){
         temp=temp->next;
     }
-    Node* todelete=temp->next;
+    Node<T>* todelete=temp->next;
     temp->next=temp->next->next;
     delete todelete;
 }
-
-Node* reverse(Node* &head){
-    Node* cur=head;
-    Node* prev=NULL;
-    Node* nextp;
+/* 
+Node* reverse(Node<T>* &head){
+    Node<T>* cur=head;
+    Node<T>* prev=NULL;
+    Node<T>* nextp;
     while(cur!=NULL){
         nextp=cur->next;
         cur->next=prev;
@@ -99,22 +102,22 @@ Node* reverse(Node* &head){
     return prev;
 }
 
-Node* reverseRecur(Node* &head){
+Node* reverseRecur(Node<T>* &head){
 
     if(head== NULL || head->next == NULL){
         return head;
     }
-    Node * newhead = reverseRecur(head->next);
+    Node<T> * newhead = reverseRecur(head->next);
     head->next->next=head;
     head->next=NULL;
 
     return newhead;
 }
 
-Node* reverseKNode(Node* &head,int k ){
-    Node* cur=head;
-    Node* prev=NULL;
-    Node* nextp;
+Node<T>* reverseKNode(Node<T>* &head,int k ){
+    Node<T>* cur=head;
+    Node<T>* prev=NULL;
+    Node<T>* nextp;
 
     int count = 0;
 
@@ -132,12 +135,12 @@ Node* reverseKNode(Node* &head,int k ){
     
     return prev;
 }
-
+ */
 /* void makeCycle(Node* & head){
     Node * startN = head;
     Node * 
 } */
-
+/* 
 bool detectCycle(Node* &head){
     Node * slow = head;
     Node * fast = head;
@@ -151,7 +154,7 @@ bool detectCycle(Node* &head){
     }
     return false;
 }
-
+ *//* 
 int getLenght(Node* head){
     Node* cur = head;
     int i = 0;
@@ -180,23 +183,25 @@ Node* kFromEnd(Node* head , int k){
 }
 
 Node* Concatenate()
+ */
+
 
 int main(){
-    Node * head=NULL;
+    Node<int> * head=NULL;
 
-    inserAtTail(head,1);
-    inserAtTail(head,2);
-    inserAtTail(head,3);
+    inserAtTail<int>(head,1);
+    inserAtTail<int>(head,2);
+    inserAtTail<int>(head,3);
     //print(head);
 
-    insertAtHead(head,0);
-    insertAtHead(head,-1);
+    insertAtHead<int>(head,0);
+    insertAtHead<int>(head,-1);
 
-    print(head);
+    print<int>(head);
     
     // Node* newHead=reverseRecur(head);
-    deletion(head , 1);
-    print(head);
+    deletion<int>(head , 1);
+    print<int>(head);
     //deleteHead(head);
     //deletion(head,0);
     

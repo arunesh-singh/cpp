@@ -35,21 +35,17 @@ int main(){
     int source;cin>>source; // 1
     dist[source] = 0;
     
-    // {weight,vertex}
-    set<pair<int,int>> s;
-
-    s.insert({0,source});
-
-    while(!s.empty()){
-
-        // smallest distance
-        auto x = *(s.begin());
+    set<int> s;
+    s.insert(source);
+    dist[source]=0;
+    while (!s.empty())
+    {
+        auto x=*s.begin();
         s.erase(x);
-        for(auto it : graph[x.second]){
-            if(dist[it.first] > dist[x.second]+ it.second){
-                s.erase({dist[it.first],it.first});
-                dist[it.first] = dist[x.second] + it.second;
-                s.insert({dist[it.first],it.first});
+        for(auto it:graph[x]){
+            if(dist[it.first]>(dist[x]+it.second)){
+                dist[it.first]=dist[x]+it.second;
+                s.insert(it.first);
             }
         }
     }

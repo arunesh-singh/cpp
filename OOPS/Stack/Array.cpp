@@ -14,15 +14,19 @@ class Stack{
     }
 
     void Push(int data){
-        if(top==n-1)
+        if(top==n-1){
             cout<<"Stack Overflow"<<endl;
+            return;
+        }
         
         top++;
         arr[top]=data;
     }
     void Pop(){
-        if(top==-1)
+        if(top==-1){
             cout<<"Stack Underflow"<<endl;
+            return;
+        }
         top--;
     }
     void Top(){
@@ -58,6 +62,11 @@ int main(){
     s.Pop();
     s.Pop();
     s.Pop();
+    s.Pop();
+    cout<<s.isEmpty()<<endl;
+    
+    s.Push(5);
+    s.Top();
 
     cout<<s.isEmpty()<<endl;
 }

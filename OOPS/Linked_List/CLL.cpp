@@ -18,17 +18,17 @@ int lenght(Node *head){
     do{
         count++;
         temp = temp->next;
-    }while( temp != head )
+    }while( temp != head );
 
     return count;
 }
 
 void print(Node * head){
     Node *cur=head;
-    while(cur!=head){
+    do{
         cout<<cur->data<<"-->";
         cur=cur->next;
-    }
+    }while(cur!=head);
     cout<<"NULL"<<endl;
 }
 
