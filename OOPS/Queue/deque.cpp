@@ -24,6 +24,18 @@ class queue{
         back = NULL;
 
     }
+    void display(){
+        if(front == NULL){
+            cout<<"Deque is empty\n";
+            return;
+        }
+        node* cur = front;
+        do{
+            cout<<cur->data<<" ";
+            cur = cur->next;
+        }while( cur != back);
+        cout<<"NULL\n";
+    }
 
     void insertFront(int data){
 
@@ -94,37 +106,34 @@ class queue{
             return true;
         return false;
     }
-
+/* 
     int size(){
 
     }
 
     void erase(){
         
-    }
+    } */
 };
 
 int main(){
 
     queue q;
-    q.push(1);
-    q.push(2);
-    q.push(3);
-    q.push(4);
+    q.insertFront(4);
+    q.insertFront(3);
+    q.insertFront(2);
+    q.insertFront(1);
+    q.insertBack(0);
+    q.insertBack(-1);
 
-    cout<<q.peek()<<endl;
-    q.pop();
+    q.display();
 
-    cout<<q.peek()<<endl;
-    q.pop();
+    q.deleteBack();
+    q.deleteFront();
 
-    cout<<q.peek()<<endl;
-    q.pop();
+    q.display();
 
-    cout<<q.peek()<<endl;
-    q.pop();
-
-    cout<<q.empty()<<endl;
+    cout<<q.isEmpty()<<endl;
 
     return 0;
 }

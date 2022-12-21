@@ -23,12 +23,27 @@ class queue{
         back = NULL;
     }
 
+    void display(){
+
+        if(front == NULL ){
+            cout<<"Queue is Empty"<<endl;
+            return;
+        }
+        node* cur = front;
+        do{
+            cout<<cur->data<<" -> ";
+            cur = cur->next;
+        }while( cur!=front );
+
+        cout<<endl;
+    }
+
     void enQueue(int data){
 
         node* n=new node(data);
 
         if(front == NULL)
-            front=n;
+            front = back =n;
         else
             back->next=n;
         back=n;
@@ -37,7 +52,7 @@ class queue{
 
     void deQueue(){
         if(front==NULL){
-            cout<<"Queue Underflow\n";
+            cout<<"Queue is Empty\n";
             return;
         }
         node* todelete;
@@ -53,7 +68,6 @@ class queue{
         }
         delete todelete;
 
-        return;
     }
 
     void peek(){
@@ -80,16 +94,16 @@ int main(){
     q.enQueue(3);
     q.enQueue(4);
 
-    q.peek();
+    q.display();
     q.deQueue();
 
-    q.peek();
+    q.display();
     q.deQueue();
 
-    q.peek();
+    q.display();
     q.deQueue();
 
-    q.peek();
+    q.display();
     q.deQueue();
 
     cout<<q.empty();
