@@ -17,7 +17,7 @@ public:
             cout<<"Out of Bounds";
             return;
         }
-        else if( i>j && x!=0 ){
+        else if( x!=0 ){
             cout<<"x must be zero";
             return;
         }
