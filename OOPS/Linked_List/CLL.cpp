@@ -125,7 +125,7 @@ void deletion(Node* &head,int val){
     temp->next=temp->next->next;
     delete todelete;
 }
-
+/* 
 Node* reverse(Node* &head){
     Node* cur=head;
     Node* prev=NULL;
@@ -177,7 +177,7 @@ Node* reverseKNode(Node* &head,int k ){
     Node * startN = head;
     Node * 
 } */
-
+/* 
 bool detectCycle(Node* &head){
     Node * slow = head;
     Node * fast = head;
@@ -191,7 +191,7 @@ bool detectCycle(Node* &head){
     }
     return false;
 }
-
+ */
 int main(){
     Node * head=NULL;
 
@@ -205,26 +205,5 @@ int main(){
 
     print(head);
     
-    Node* newHead=reverseRecur(head);
-    print(newHead);
-    //deleteHead(head);
-    //deletion(head,0);
-    
-
-    //cout<<search(head,2)<<endl;
-/*
-    Node * second;
-    Node * third;
-
-    head->data=1;
-    head->next=second;
-
-    second->data=2;
-    second->next=third;
-
-    third->data=3;
-
-    
-*/
     return 0;
 }

@@ -48,19 +48,21 @@ void levelOrder(Node* root){
 
     if(!root) return;
 
+    Node* temp;
     queue<Node*> q;
     q.push(root);
 
-    while(q.empty() == false){
-        Node * node = q.front();
-        cout<< node->data << " ";
+    while(!q.empty()){
+        temp = q.front();
         q.pop();
-
-        if( node->left != NULL)
-            q.push(node->left);
-        if(node->right != NULL)
-            q.push(node->right);
+        cout<<temp->data<<" ";
+        if(temp->left) q.push(temp->left);
+        if(temp->right) q.push(temp->right);
     }
+}
+
+int search(Node* root,int data){
+    
 }
 
 int main(){
@@ -82,6 +84,8 @@ int main(){
     cout<<"Postorder traversal : ";
     postOrder(root);
     cout<<endl;
+
+    levelOrder(root);
 
     return 0;
 }

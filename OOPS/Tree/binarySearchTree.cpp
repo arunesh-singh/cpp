@@ -13,11 +13,6 @@ class Node{
     }
 };
 
-Node* newNode(int item){
-    Node* temp = new Node(item);
-    return temp;
-}
-
 void preOrder(Node* root){
 
     if(root){
@@ -47,7 +42,10 @@ void postOrder(Node* root){
 
 
 Node* insertNode(Node* node , int key){
-    if(node == NULL) return newNode(key);
+    if(node == NULL){
+        Node* temp = new Node(key);
+        return temp;
+    }
 
     if( key < node->key )
         node->left = insertNode(node->left,key);
@@ -57,53 +55,52 @@ Node* insertNode(Node* node , int key){
     return node;
 }
 
-Node* minValueNode(Node* node){
-    Node* cur = node;
+Node* maxValueNode(Node* node){
+    if(!node) return NULL;
     
-    while( cur && cur->left != NULL )
-        cur = cur->left;
+    while( node->right != NULL )
+        node = node->right;
 
-    return cur;
+    return node;
 }
 
 Node* deleteNode(Node* root,int key){
     if(root == NULL) return root;
 
-    if(key< root->key)
+    if(key < root->key)
         root->left = deleteNode(root->left,key);
     else if( key > root->key )
         root->right = deleteNode(root->right,key);
     else{
-
         if( root->left == NULL ){
             Node* temp = root->right;
             delete root;
             return temp;
-        }else if( root->right == NULL){
+        }
+        if( root->right == NULL ){
             Node* temp = root->left;
             delete root;
             return temp;
         }
 
-        Node * temp = minValueNode(root->right);
-
+        Node* temp = maxValueNode(root->left);
         root->key = temp->key;
-        root->right = deleteNode(root->right,temp->key);
+        root->left = deleteNode(root->left,root->key);
     }
     return root;
 }
 
 
-Node* search(Node* root,int key){
+Node* search(Node* root,int data){
     if(!root) return root;
 
-    if( key == root->key){
+    if( data == root->key){
         return root;
     }
-    if( key < root->key)
-        return search(root->left,x,y);
+    if( data < root->key)
+        return search(root->left,data);
     
-    return search(root->right,x,y);
+    return search(root->right,data);
 }
 
 void levelOrder(Node* root){
@@ -115,7 +112,7 @@ void levelOrder(Node* root){
 
     while(q.empty() == false){
         Node * node = q.front();
-        cout<< node->data << " ";
+        cout<< node->key << " ";
         q.pop();
 
         if( node->left != NULL)
@@ -139,27 +136,27 @@ int height(Node* node){
 
 int main(){
     Node* root = NULL;
-    root = insertNode(root,8);
-    insertNode(root,3);
-    insertNode(root,1);
-    insertNode(root,6);
-    insertNode(root,7);
-    insertNode(root,10);
-    insertNode(root,14);
-    insertNode(root,4);
+    root = insertNode(root,75);
+    root = insertNode(root,70);
+    root = insertNode(root,44);
+    root = insertNode(root,98);
+    root = insertNode(root,108);
+    root = insertNode(root,91);
+    root = insertNode(root,95);
+    root = insertNode(root,45);
+    root = insertNode(root,145);
 
     cout<<"InOrder Traversal : ";
     inOrder(root);
 
-    cout<<"\nAfter deleting 10\n";
-    root = deleteNode(root,10);
+    cout<<"\nAfter deleting 98\n";
+    root = deleteNode(root,98);
 
     cout<<"InOrder Traversal : ";
     inOrder(root);
 
-    cout<<"\nAfter updating 4 with 9 : \n";
-    root = search(root,4,9);
-    cout<<"InOrder Traversal : ";
-    inOrder(root);
+    root = search(root,4);
+    cout<<endl<<root->key<<endl;
+
 }
 

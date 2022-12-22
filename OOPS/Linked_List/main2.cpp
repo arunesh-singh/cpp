@@ -15,6 +15,15 @@ void print(Node* head){
     }
 }
 
+void print_recur(Node*head){
+    if(head == NULL ){
+        cout<<" NULL ";
+        return;
+    }
+    print_recur(head->Next);
+    cout<<head->Val<<" ";
+}
+
 void insertAtFront(Node**head,int newVal){
     // 1. Prepare a new node
     Node* newNode=new Node();
@@ -83,7 +92,8 @@ int main(){
 //    insertAtEnd(&third,4);
     insertAfter(head,-1);
     insertAfter(second,-5);
-    print(head);
+    // print(head);
+    print_recur(head);
     
     return 0;
 }
