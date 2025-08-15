@@ -1,1 +1,0 @@
-{"name":"Local: circularsum","url":"c:\\Users\\bunty\\Documents\\C++\\arrays\\subarray\\circularsum.cpp","tests":[{"id":1640323783881,"input":"7\n-4 4 -6 6 10 -11 12","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\arrays\\subarray\\circularsum.cpp","group":"local","local":true}

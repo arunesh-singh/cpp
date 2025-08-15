@@ -1,1 +1,0 @@
-{"name":"Local: sparse","url":"c:\\Users\\bunty\\Documents\\C++\\arrays\\2D Arrays\\sparse.cpp","tests":[{"id":1643020902215,"input":"3 3\n0 4 0\n2 1 0\n4 0 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\arrays\\2D Arrays\\sparse.cpp","group":"local","local":true}

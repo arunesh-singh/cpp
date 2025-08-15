@@ -1,1 +1,0 @@
-{"name":"Local: bubble_sort","url":"c:\\Users\\bunty\\Documents\\C++\\arrays\\sorting\\bubble_sort.cpp","tests":[{"id":1641712555375,"input":"5\n3 5 6 2 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\arrays\\sorting\\bubble_sort.cpp","group":"local","local":true}

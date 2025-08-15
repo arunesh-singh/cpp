@@ -1,1 +1,0 @@
-{"name":"Local: search","url":"c:\\Users\\bunty\\Documents\\C++\\arrays\\2D Arrays\\search.cpp","tests":[{"id":1640918488064,"input":"3 3\n12 23 34\n45 56 67\n78 89 90\n90","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\bunty\\Documents\\C++\\arrays\\2D Arrays\\search.cpp","group":"local","local":true}
