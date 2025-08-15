@@ -1,0 +1,52 @@
+# Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app  # macOS/iOS app bundles (when present as directories, add .app/ to ignore the entire bundle)
+*.ipa  # iOS packaged application
+*.dSYM/  # Xcode debug symbol directories
+
+# Libraries
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+*.la
+
+# Other build artifacts
+*.lo
+*.bbl
+*.blg
+*.dep
+*.gch
+
+# CMake and build directories
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Xcode & iOS
+*.xcworkspace
+*.xcodeproj
+*.xcuserstate
+DerivedData/
+
+# Ignore *all* extensionless files except common source headers (optional, Linux-specific)
+# Uncomment the line below if you put Linux executables with no extension in the repo root,
+# but be careful it doesn't ignore wanted extensionless files
+# !*/    # don't ignore directories
+# !*.cpp
+# !*.h
+# *
+# !.gitignore
+# !README.md
+
+# General OS files
+.DS_Store
+Thumbs.db
