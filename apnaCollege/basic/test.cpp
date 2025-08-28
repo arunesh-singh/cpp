@@ -17,21 +17,42 @@ void reverseArr(int arr[], int size)
 
 int main()
 {
-  int arr[] = {4, 3, 1, 6, 2};
+  int n;
+  cout << "Enter size of the array: ";
+  cin >> n;
 
-  cout << "Initial Array: ";
-  for (int i = 0; i < 5; i++)
+  int prices[n];
+  cout << "Enter daily price of stock: ";
+  for (int i = 0; i < n; i++)
   {
-    cout << arr[i] << " ";
+    cin >> prices[i];
+  }
+
+  int diff[n - 1];
+
+  for (int i = 0; i < n; i++)
+  {
+    diff[i] = prices[i + 1] - prices[i];
+  }
+
+  cout << "Difference array: ";
+  for (int i = 0; i < n - 1; i++)
+  {
+    cout << diff[i] << " ";
   }
   cout << endl;
-  reverseArr(arr, 5);
 
-  cout << "Reversed Array: ";
-  for (int i = 0; i < 5; i++)
+  int tSum = diff[0], maxP = diff[0];
+  for (int i = 1; i < n; i++)
   {
-    cout << arr[i] << " ";
+    tSum += diff[i];
+    if (tSum > maxP)
+    {
+      maxP = tSum;
+    }
   }
+
+  cout << maxP << endl;
 
   return 0;
 }
