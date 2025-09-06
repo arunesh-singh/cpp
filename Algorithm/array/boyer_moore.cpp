@@ -19,12 +19,25 @@ int majority_element(vector<int> &nums)
 // boyer's moore voting algo
 //  You “pair off” different elements — they cancel each other.
 //  What remains (if any) is the majority element.
-int boyer_moore(vector<int>)
+int boyer_moore(vector<int> arr)
+{
+  int count = 0, mostOccur;
 
-    int main()
+  for (int num : arr)
+  {
+    if (count == 0)
+      mostOccur = num;
+
+    count += (num == mostOccur) ? 1 : -1;
+  }
+
+  return mostOccur;
+}
+
+int main()
 {
 
-  vector<int> arr = {2, 2, 1, 1, 1, 2, 2, 3, 2, 4, 1, 2, 1, 2};
+  vector<int> arr = {2, 2, 1, 1, 1, 2, 2, 3, 2, 4, 1, 2, 1, 2, 2, 2, 2};
 
   cout << majority_element(arr) << endl;
 
